@@ -95,18 +95,22 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
     from matplotlib.patches import Rectangle
 
+    # TODO: point to mnist.pkl.gz
+    # available here: http://deeplearning.net/data/mnist/mnist.pkl.gz
+    dataset_path = '/path/to/mnist.pkl.gz'
+
+    test_set_path = '/path/to/moving_mnist_test_set_nframes{0}_framesize{1}.h5'.format(
+        30, 100)
+
     os.system('mkdir -p tmp')
     numpy_rng = np.random.RandomState(1)
 
     dataset = MovingMNIST(
-        mnist_path='/home/vmichals/data/mnist.pkl.gz',
+        mnist_path=dataset_path,
         numpy_rng=numpy_rng)
 
     print "dumping test set..."
-    dataset.dump_test_set(
-        ('/home/vmichals/data/moving_mnist_test_set_nframes{0}_framesize{1}'
-         '.h5').format(30, 100),
-        nframes=30, framesize=100)
+    dataset.dump_test_set(test_set_path, nframes=30, framesize=100)
     print "done (with dumping test set)"
 
 
