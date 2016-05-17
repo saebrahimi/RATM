@@ -1,0 +1,14 @@
+Run preprocessing as described in ../data_preparation/kth/README
+
+
+for N in range(1, 25):
+
+    Run training for the fold in which videos of subject N are used as test set: 
+    python train_attention_rnn_on_kth.py --test-person N
+
+    Run computation of avg. test IoU for corresponding test set:
+    python eval_test_IoU.py --test-person 1
+
+Compute the average test IoU over subjects:
+python compute_avg_leave_one_out_crossvalid_IoU.py
+
